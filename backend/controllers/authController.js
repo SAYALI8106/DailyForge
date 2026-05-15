@@ -96,3 +96,75 @@ export const getUser = async (req, res) => {
       .json({ message: "Error fetching user data", success: false });
   }
 };
+
+// update profile function
+export const updateProfile = async (req, res) => {
+  try {
+
+    // fetch values from request body
+    const { name, currentPassword, newPassword } = req.body;
+
+    // fetch current user
+    const user = await User.findById(req.userId);
+
+    // check user exists or not
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // update name if provided
+    if (name) {
+      user.name = name;
+    }
+
+    // update password if provided
+    if (currentPassword && newPassword) {
+
+      // compare current password
+      const passwordCheck = await bcrypt.compare(
+        currentPassword,
+        user.password
+      );
+
+      // check password matches or not
+      if (!passwordCheck) {
+        return res.status(401).json({
+          success: false,
+          message: "Current password is incorrect",
+        });
+      }
+
+      // hash new password
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      // update password
+      user.password = hashedPassword;
+    }
+
+    // save updated user
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Profile updated successfully",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+
+  } catch (error) {
+
+    // error handling
+    console.log("Profile update error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error while updating profile",
+    });
+  }
+};

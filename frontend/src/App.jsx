@@ -1,12 +1,13 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
-import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
-import Tasks from "./pages/Tasks.jsx";
-import RoutineBuilder from "./pages/RoutineBuilder.jsx";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar.jsx';
+import Login from './pages/Login.jsx';
+import Signup from './pages/Signup.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import ProtectedRoutes from './components/ProtectedRoutes.jsx';
+import Tasks from './pages/Tasks.jsx';
+import RoutineBuilder from './pages/RoutineBuilder.jsx';
+import Profile from './pages/Profile.jsx';
 
 const App = () => {
   return (
@@ -38,6 +39,14 @@ const App = () => {
             element={
               <ProtectedRoutes>
                 <RoutineBuilder />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoutes>
+                <Profile />
               </ProtectedRoutes>
             }
           />

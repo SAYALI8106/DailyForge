@@ -10,6 +10,7 @@ import RoutineBuilder from "./pages/RoutineBuilder.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import About from "./pages/About.jsx";
 import Profile from './pages/Profile.jsx';
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 const App = () => {
   return (
@@ -56,6 +57,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <ScrollToTop />
     </BrowserRouter>
   );
 };

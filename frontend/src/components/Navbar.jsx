@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, LayoutDashboard, CheckSquare, Calendar, LogOut, LogIn, UserPlus, Sun, Moon } from "lucide-react";
+import { Menu, X, LayoutDashboard, CheckSquare, Calendar, LogOut, LogIn, User, Sun, Moon } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import { ThemeContext } from "../context/ThemeContext";
 import { clsx } from "clsx";

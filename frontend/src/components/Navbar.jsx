@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, LayoutDashboard, CheckSquare, Calendar, LogOut, LogIn, UserPlus } from "lucide-react";
+import { Menu, X, LayoutDashboard, CheckSquare, Calendar, LogOut, LogIn, User } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -42,54 +42,15 @@ const Navbar = () => {
   };
 
   // Navigation Links configuration
-  const navLinks = [
-    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
-    { name: "Tasks", path: "/tasks", icon: CheckSquare },
-    { name: "Routine Builder", path: "/routine-builder", icon: Calendar },
-  ];
+ const navLinks = [
+  { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
+  { name: "Tasks", path: "/tasks", icon: CheckSquare },
+  { name: "Routine Builder", path: "/routine-builder", icon: Calendar },
+  { name: "Profile", path: "/profile", icon: User },
+];
 
   return (
-    <nav className="surface-bg fixed top-0 z-20 w-full border-soft shadow-sm">
-      <div className="mx-auto max-w-7xl flex items-center justify-between p-4">
-        <Link to={token ? '/dashboard' : '/login'}>
-          <span className="text-2xl font-semibold text-main">DailyForge</span>
-        </Link>
-
-        <div className="flex items-center gap-4">
-          {!token ? (
-            <>
-              <Link
-                to="/login"
-                className="text-muted hover:text-main transition-colors font-medium cursor-pointer"
-              >
-                Login
-              </Link>
-
-              <Link to="/signup" className="btn btn-primary cursor-pointer">
-                Signup
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/profile"
-                className="
-      text-muted hover:text-main
-      transition-colors
-      font-medium cursor-pointer
-    "
-              >
-                Profile
-              </Link>
-
-              <button
-                onClick={logout}
-                className="btn btn-primary px-4 py-2 cursor-pointer"
-              >
-                Logout
-              </button>
-            </>
-          )}
+  
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -238,7 +199,7 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                       className="w-full flex items-center justify-center gap-2 btn btn-primary py-3"
                     >
-                      <UserPlus size={18} />
+                      <User size={18} />
                       Signup
                     </Link>
                   </>

@@ -1,5 +1,5 @@
 import express from "express";
-import { getUser, login, signup, updateProfile } from "../controllers/authController.js";
+import { getUser, login, signup, updateProfile, logout } from "../controllers/authController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 // router object for auth
@@ -16,3 +16,5 @@ authRouter.get("/me", authMiddleware, getUser);
 
 // Route for profile update
 authRouter.patch("/profile", authMiddleware, updateProfile);
+// Route for logout
+authRouter.post("/logout", logout);
